@@ -16,6 +16,7 @@ class GoogleAuth extends Component {
 
           this.onAuthChange(this.auth.isSignedIn.get());
           this.auth.isSignedIn.listen(this.onAuthChange);
+          console.log(this.auth.currentUser.get().getId());
         });
     });
   }
@@ -68,7 +69,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    signIn: () => dispatch(signIn()),
+    signIn: (id) => dispatch(signIn(id)),
     signOut: () => dispatch(signOut()),
   };
 };
