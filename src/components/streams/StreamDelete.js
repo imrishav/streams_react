@@ -2,18 +2,31 @@ import React, { useEffect } from 'react';
 import Modal from '../Modal';
 import { connect } from 'react-redux';
 import { fetchStream, deleteStream } from '../../actions';
+import { Link } from 'react-router-dom';
 
 import history from '../../history';
 
-const StreamDelete = ({ match: { params }, streams, fetchStream }) => {
+const StreamDelete = ({
+  match: { params },
+  streams,
+  fetchStream,
+  deleteStream,
+}) => {
   useEffect(() => {
     fetchStream(params.id);
   }, []);
 
   const actions = (
     <React.Fragment>
-      <button className="ui button negative">Delete</button>
-      <button className="ui button">Cancel</button>
+      <button
+        onClick={() => deleteStream(params.id)}
+        className="ui button negative"
+      >
+        Delete
+      </button>
+      <Link to="/" className="ui button">
+        Cancel
+      </Link>
     </React.Fragment>
   );
 
